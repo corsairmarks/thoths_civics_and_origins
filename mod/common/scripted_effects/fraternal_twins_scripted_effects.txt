@@ -1,0 +1,407 @@
+# triggered by empire_init_capital_planet
+# this = country, empite being initialized
+# last_created_species = species, secondary
+setup_fraternal_twins_secondary_species = {
+	optimize_memory
+	last_created_species = {
+		set_species_homeworld = event_target:fraternal_secondhome
+		set_species_flag = fraternal_species@prev
+		save_event_target_as = secondary_species
+	}
+
+	if = {
+		limit = { event_target:secondary_species = { is_lithoid = yes } }
+		set_country_flag = lithoid_subspecies
+	}
+	else = {
+		set_country_flag = non_lithoid_subspecies
+	}
+}
+
+# this = planet
+# evant_target:fraternal_species = species, used to generate Pops
+generate_fraternal_twins_start_pops = {
+	optimize_memory
+	set_variable = {
+		which = fraternal_pop_count
+		value = 15
+	}
+
+	if = {
+		limit = { owner = { is_hive_empire = yes } }
+		change_variable = {
+			which = fraternal_pop_count
+			value = 2
+		}
+	}
+
+	if = {
+		limit = { owner = { is_eager_explorer_empire = yes } }
+		change_variable = {
+			which = fraternal_pop_count
+			value = -5
+		}
+	}
+
+	while = {
+		count = fraternal_pop_count
+		create_pop = {
+			species = event_target:fraternal_species
+			ethos = random
+			effect = {
+				if = {
+					limit = { owner = { is_gestalt = yes } }
+					clear_ethos = yes
+				}
+			}
+		}
+	}
+
+	clear_variable = fraternal_pop_count
+
+	if = {
+		limit = { owner = { has_valid_civic = civic_permanent_employment } }
+		while = {
+			count = 2
+			random_owned_pop = {
+				limit = {
+					NOT = { has_trait = trait_zombie }
+					has_job_category = worker
+					is_robot_pop = no
+				}
+				weights = {
+					base = 1
+					modifier = {
+						factor = 10
+						OR = {
+							has_job = clerk
+							has_job = technician
+							has_job = miner
+							has_job = farmer
+						}
+					}
+				}
+				modify_species = {
+					species = this
+					add_trait = trait_zombie
+					add_traits_at_start_of_list = yes
+				}
+				if = {
+					limit = { has_trait = trait_syncretic_proles }
+					modify_species = {
+						species = this
+						remove_trait = trait_syncretic_proles
+					}
+				}
+				oft_ensure_hive_citizenship = yes
+				check_planet_employment = yes
+			}
+		}
+	}
+}
+
+# this = planet
+generate_fraternal_twins_start_buildings_and_districts = {
+	optimize_memory
+	if = {
+		limit = { owner = { is_hive_empire = yes } }
+		add_building = building_hive_capital
+	}
+	else_if = {
+		limit = { owner = { is_machine_empire = yes } }
+		add_building = building_machine_capital
+	}
+	else = {
+		add_building = building_capital
+	}
+
+	if = {
+		limit = { owner = { NOT = { has_valid_civic = civic_agrarian_idyll } } }
+		oft_add_authority_appropriate_housing_district = yes
+	}
+	else = {
+		add_district = district_farming
+	}
+
+	if = {
+		limit = {
+			owner = {
+				OR = {
+					is_lithoid_empire = no
+					AND = {
+						has_country_flag = non_lithoid_subspecies
+						prev = { has_planet_flag = fraternal_secondhome }
+					}
+				}
+			}
+		}
+		add_district = district_farming
+	}
+	else = {
+		add_district = district_mining
+	}
+
+	add_district = district_mining
+	add_district = district_industrial
+	if = {
+		limit = { owner = { is_hive_empire = no } }
+		add_district = district_industrial
+	}
+	else_if = {
+		limit = { has_planet_flag = fraternal_secondhome }
+		add_district = district_generator
+	}
+	else_if = {
+		limit = { owner = { is_lithoid = no } }
+		add_district = district_farming
+	}
+	else = {
+		add_district = district_mining
+	}
+
+	if = {
+		limit = { owner = { is_eager_explorer_empire = no } }
+		if = {
+			limit = { owner = { is_gestalt = no } }
+			oft_add_authority_appropriate_housing_district = yes
+		}
+		if = {
+			limit = { has_planet_flag = fraternal_firsthome }
+			if = {
+				limit = { owner = { NOT = { has_valid_civic = civic_reanimated_armies } } }
+				add_building = building_research_lab_1
+			}
+			else = {
+				add_building = building_dread_encampment
+				solar_system = { # Necromancers do not give engineering, so make sure there's some readily-accessible engineering
+					while = {
+						count = 2
+						random_system_planet = {
+							limit = {
+								has_deposit_for = shipclass_research_station
+								NOT = { has_deposit = d_engineering_6 }
+							}
+							clear_deposits = yes
+							add_deposit = d_engineering_6
+						}
+					}
+				}
+			}
+		}
+		else_if = {
+			limit = { has_planet_flag = fraternal_secondhome }
+			if = {
+				limit = { owner = { is_gestalt = no } }
+				add_district = district_mining
+			}
+			if = {
+				limit = { owner = { is_hive_empire = yes } }
+				add_building = building_hive_node
+			}
+			else_if = {
+				limit = { owner = { is_machine_empire = yes } }
+				add_building = building_uplink_node
+			}
+			else_if = {
+				limit = { owner = { is_spiritualist = no } }
+				add_building = building_bureaucratic_1
+			}
+			else_if = {
+				limit = { owner = { is_death_cult_empire = no } }
+				add_building = building_temple
+			}
+			else = {
+				add_building = building_sacrificial_temple_1
+			}
+		}
+	}
+
+	if = {
+		limit = { owner = { is_hive_empire = yes } }
+		add_building = building_spawning_pool
+	}
+	if = {
+		limit = { owner = { is_machine_empire = yes } }
+		add_building = building_machine_assembly_plant
+	}
+	else_if = {
+		limit = { owner = { has_valid_civic = civic_permanent_employment } }
+		add_building = building_posthumous_employment_center
+	}
+
+	if = {
+		limit = { owner = { has_valid_civic = civic_environmentalist } }
+		add_building = building_ranger_lodge
+		add_blocker = { type = d_big_nature_preserve_blocker }
+	}
+
+	if = {
+		limit = {
+			owner = {
+				is_spiritualist = yes
+				is_megacorp = no
+				is_pleasure_seeker = no
+			}
+		}
+		if = {
+			limit = { owner = { is_death_cult_empire = no } }
+			add_building = building_temple
+		}
+		else = {
+			add_building = building_sacrificial_temple_1
+		}
+	}
+	else_if = {
+		limit = {
+			OR = {
+				AND = {
+					has_planet_flag = fraternal_secondhome
+					owner = { is_regular_empire = yes }
+				}
+				owner = { is_pleasure_seeker = yes }
+			}
+		}
+		add_building = building_holo_theatres
+	}
+	else_if = {
+		limit = { owner = { is_regular_empire = yes } }
+		add_building = building_commercial_zone
+	}
+
+	# Replace a mining district with a farming district for empires that use food for alloy production
+	if = {
+		limit = {
+			has_planet_flag = fraternal_firsthome
+			owner = {
+				NOT = { has_country_flag = non_lithoid_subspecies }
+				is_machine_empire = no
+				is_catalytic_empire = yes
+			}
+		}
+		remove_district = district_mining
+		add_district = district_farming
+	}
+
+	# Replace farming districts with uncapped ones for anglers civic on ocean worlds
+	if = {
+		limit = {
+			OR = {
+				is_planet_class = pc_ocean
+				is_pd_planet_for_aqua_trait = yes
+			}
+			owner = { is_anglers_empire = yes }
+		}
+		while = {
+			limit = {
+				num_districts = {
+					type = district_farming
+					value > 0
+				}
+			}
+			remove_district = district_farming
+			add_district = district_farming_uncapped
+		}
+	}
+
+	if = {
+		limit = {
+			free_building_slots > 0
+			NOT = { is_planet_class = pc_gaia }
+			is_pd_gaia = no
+			owner = { is_idyllic_bloom_empire = yes }
+		}
+		add_building = building_gaiaseeders_1
+	}
+
+	if = {
+		limit = {
+			free_building_slots > 0
+			owner = { is_relentless_industrialist_empire = yes }
+		}
+		add_building = building_coordinated_fulfillment_center_1
+	}
+}
+
+# this = planet
+ensure_planet_pops_match_ideal_planet_class = {
+	optimize_memory
+	# note: uses every_owned_pop instead of every_owned_species because the species cache is usually not up-to-date immediately at game_start
+	every_owned_pop = {
+		modify_species = {
+			base = none
+			ideal_planet_class = prev
+		}
+		oft_ensure_hive_citizenship = yes
+	}
+	check_planet_employment = yes
+}
+
+# this = species/pop/leader
+oft_ensure_hive_citizenship = {
+	optimize_memory
+	if = {
+		limit = {
+			NOT = {
+				has_citizenship_type = {
+					type = citizenship_full
+					country = prev
+				}
+			}
+		}
+		set_citizenship_type = {
+			type = citizenship_full
+			country = prev
+		}
+		set_living_standard = {
+			type = living_standard_hive_mind
+			country = prev
+		}
+		set_military_service_type = {
+			type = military_service_full
+			country = prev
+		}
+		set_population_controls = {
+			type = population_control_no
+			country = prev
+		}
+		set_migration_controls = {
+			type = migration_control_no
+			country = prev
+		}
+		set_colonization_controls = {
+			type = colonization_control_no
+			country = prev
+		}
+	}
+}
+
+# this = planet
+oft_add_authority_appropriate_housing_district = {
+	optimize_memory
+	if = {
+		limit = { owner = { is_hive_empire = yes } }
+		add_district = district_hive
+	}
+	else_if = {
+		limit = { owner = { is_machine_empire = yes } }
+		add_district = district_nexus
+	}
+	else = {
+		add_district = district_city
+	}
+}
+
+# this = planet
+oft_add_species_appropriate_food_district = {
+	optimize_memory
+	if = {
+		limit = {
+			exists = owner
+			owner = { is_lithoid_empire = no }
+		}
+		ojl_add_planet_appropriate_farming_district = yes
+	}
+	else = {
+		ojl_add_planet_appropriate_mining_district = yes
+	}
+}

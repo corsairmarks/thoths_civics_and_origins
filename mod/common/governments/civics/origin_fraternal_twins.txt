@@ -1,0 +1,81 @@
+origin_fraternal_twins = {
+	is_origin = yes
+	icon = "gfx/interface/icons/origins/origins_fraternal_twins.dds"
+	picture = GFX_origin_fraternal_twins
+	flags = { custom_start_screen }
+	initializers = { 
+		custom_starting_init_fraternal01
+		custom_starting_init_fraternal02
+		custom_starting_init_fraternal03
+		custom_starting_init_fraternal04
+		custom_starting_init_fraternal05
+		custom_starting_init_fraternal06
+		custom_starting_init_fraternal07
+		custom_starting_init_fraternal10
+		custom_starting_init_fraternal11
+		custom_starting_init_fraternal12
+		# custom_starting_init_lustist # TODO
+	 }
+	playable = { has_utopia = yes }
+	ai_playable = { has_utopia = yes }
+	possible = {
+		ethics = {
+			NOT = { value = ethic_gestalt_consciousness }
+			OR = {
+				text = civic_tooltip_xenophile
+				value = ethic_xenophile
+				value = ethic_fanatic_xenophile
+			}
+		}
+	}
+	description = civic_tooltip_fraternal_twins_effects
+	has_secondary_species = { title = civic_fraternal_twins_secondary_species }
+	advanced_start = yes
+	random_weight = { base = 5 }
+}
+
+origin_fraternal_twins_hive = {
+	is_origin = yes
+	icon = "gfx/interface/icons/origins/origins_fraternal_twins.dds"
+	picture = GFX_origin_fraternal_twins
+	flags = { custom_start_screen }
+	initializers = { 
+		custom_starting_init_fraternal01
+		custom_starting_init_fraternal02
+		custom_starting_init_fraternal03
+		custom_starting_init_fraternal04
+		custom_starting_init_fraternal05
+		custom_starting_init_fraternal06
+		custom_starting_init_fraternal07
+		custom_starting_init_fraternal10
+		custom_starting_init_fraternal11
+		custom_starting_init_fraternal12
+		# custom_starting_init_lustist # TODO
+	 }
+	playable = {
+		has_utopia = yes
+		has_federations_dlc = yes
+	}
+	ai_playable = {
+		has_utopia = yes
+		has_federations_dlc = yes
+	}
+	possible = {
+		authority = { value = auth_hive_mind }
+		civics = {
+			value = civic_hive_empath
+			NOT = { value = civic_hive_devouring_swarm }
+		}
+	}
+	description = civic_tooltip_fraternal_twins_hive_effects
+	has_secondary_species = {
+		title = civic_fraternal_twins_secondary_species
+		traits = { trait = trait_hive_mind }
+	}
+	advanced_start = yes
+	random_weight = { base = 5 }
+}
+
+# no machine version because it would require overwriting all the built-in species classes
+# * the MACHINE species class would need to be overridden so that it could be chosen as secondary only for this origin
+# * non-MACHINE species classes would need to be overridden so they could not be chosen as secondary for this origin

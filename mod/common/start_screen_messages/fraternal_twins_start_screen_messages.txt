@@ -1,0 +1,11 @@
+part = {
+	location = 0
+	localization = "START_SCREEN_FRATERNAL_TWINS"
+	trigger = { has_origin = origin_fraternal_twins }
+}
+
+part = {
+	location = 0
+	localization = "START_SCREEN_FRATERNAL_TWINS_HIVE"
+	trigger = { has_origin = origin_fraternal_twins_hive }
+}

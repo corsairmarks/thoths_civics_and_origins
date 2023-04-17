@@ -1,0 +1,14 @@
+# event_target:fraternal_firsthome = planet, homeworld of the main species
+# event_target:fraternal_secondhome = planet, homeworld of the secondary species
+# $PD_PLANET_CATEGORY$ = general planet class without "pc_" (string)
+# $EVENT_ID$ = the numeric event ID to launch (integer)
+option = {
+	name = pc_$PD_PLANET_CATEGORY$
+	trigger = { has_planetary_diversity = yes }
+	allow = { event_target:fraternal_firsthome = { is_pd_$PD_PLANET_CATEGORY$ = no } }
+	hidden_effect = {
+		country_event = {
+			id = fraternal.$EVENT_ID$
+		}
+	}
+}

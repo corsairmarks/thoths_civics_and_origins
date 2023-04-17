@@ -1,0 +1,7 @@
+# this = country
+is_fraternal_twins = {
+	OR = {
+		has_origin = origin_fraternal_twins
+		has_origin = origin_fraternal_twins_hive
+	}
+}

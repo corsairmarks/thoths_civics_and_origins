@@ -1,0 +1,11 @@
+# event_target:fraternal_firsthome = planet, homeworld of the main species
+# event_target:fraternal_secondhome = planet, homeworld of the secondary species
+# $PD_PLANET_CLASS$ = specific Planetary Diversity planet class without "pc_" (string)
+option = {
+	name = pc_$PD_PLANET_CLASS$
+	allow = { event_target:fraternal_secondhome = { NOT = { is_planet_class = pc_$PD_PLANET_CLASS$ } } }
+	event_target:fraternal_secondhome = {
+		change_pc = pc_$PD_PLANET_CLASS$
+		ensure_planet_pops_match_ideal_planet_class = yes
+	}
+}

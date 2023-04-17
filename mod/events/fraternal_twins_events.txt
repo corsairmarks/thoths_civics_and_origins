@@ -1,0 +1,516 @@
+namespace = fraternal
+
+# triggered by empire_init_capital_planet
+# root = planet, capital
+# from = species, founder
+planet_event = {
+	id = fraternal.1
+	hide_window = yes
+	is_triggered_only = yes
+	pre_triggers = { has_owner = yes }
+	trigger = { owner = { is_fraternal_twins = yes } }
+	immediate = {
+		solar_system = {
+			random_system_planet = {
+				limit = { has_planet_flag = fraternal_secondhome }
+				while = {
+					limit = { is_planet_class = root }
+					change_pc = rl_habitable_normal
+				}
+				save_event_target_as = fraternal_secondhome
+			}
+		}
+		owner = {
+			setup_fraternal_twins_secondary_species = yes
+			give_starting_resources_effect = yes
+		}
+		from = { save_event_target_as = fraternal_species }
+		if = {
+			limit = { has_planet_flag = planet_earth }
+			generate_earth_deposits_and_blockers = yes
+		}
+		else = {
+			generate_start_deposits_and_blockers = yes
+		}
+		generate_fraternal_twins_start_buildings_and_districts = yes
+		generate_fraternal_twins_start_pops = yes
+		generate_home_planet_final_pass = yes
+		event_target:secondary_species = { save_event_target_as = fraternal_species }
+		event_target:fraternal_secondhome = {
+			set_owner = space_owner
+			generate_start_deposits_and_blockers = yes
+			generate_fraternal_twins_start_buildings_and_districts = yes
+			generate_fraternal_twins_start_pops = yes
+			generate_home_planet_final_pass = yes
+			set_colony_type = col_mining
+		}
+	}
+}
+
+# triggered by on_press_begin
+country_event = {
+	id = fraternal.9
+	is_triggered_only = yes
+	hide_window = yes
+	trigger = {
+		is_ai = no
+		is_fraternal_twins = yes
+	}
+	immediate = {
+		capital_scope.solar_system = {
+			random_system_planet = {
+				limit = { has_planet_flag = fraternal_firsthome }
+				save_event_target_as = fraternal_firsthome
+			}
+			random_system_planet = {
+				limit = { has_planet_flag = fraternal_secondhome }
+				save_event_target_as = fraternal_secondhome
+			}
+		}
+		country_event = {
+			id = fraternal.10
+		}
+	}
+}
+
+# triggered explicitly by fraternal.9 and .11-.20
+country_event = {
+	id = fraternal.10
+	is_triggered_only = yes
+	title = fraternal.10.title
+	desc = fraternal.10.desc
+	picture = GFX_evt_hand_shake
+	trigger = {
+		is_ai = no
+		is_fraternal_twins = yes
+	}
+	option = {
+		name = fraternal.10.a
+		ai_chance = { base = 5 } # just in case
+	}
+	inline_script = { script = events/fraternal11_planet_class_option PLANET_CLASS = desert }
+	inline_script = { script = events/fraternal11_pd_planet_category_option PD_PLANET_CATEGORY = desert EVENT_ID = 11 }
+	inline_script = { script = events/fraternal11_planet_class_option PLANET_CLASS = arid }
+	inline_script = { script = events/fraternal11_pd_planet_category_option PD_PLANET_CATEGORY = arid EVENT_ID = 12 }
+	inline_script = { script = events/fraternal11_planet_class_option PLANET_CLASS = savannah }
+	inline_script = { script = events/fraternal11_pd_planet_category_option PD_PLANET_CATEGORY = savannah EVENT_ID = 13 }
+	inline_script = { script = events/fraternal11_planet_class_option PLANET_CLASS = ocean }
+	inline_script = { script = events/fraternal11_pd_planet_category_option PD_PLANET_CATEGORY = ocean EVENT_ID = 14 }
+	inline_script = { script = events/fraternal11_planet_class_option PLANET_CLASS = continental }
+	inline_script = { script = events/fraternal11_pd_planet_category_option PD_PLANET_CATEGORY = continental EVENT_ID = 15 }
+	inline_script = { script = events/fraternal11_planet_class_option PLANET_CLASS = tropical }
+	inline_script = { script = events/fraternal11_pd_planet_category_option PD_PLANET_CATEGORY = tropical EVENT_ID = 16 }
+	inline_script = { script = events/fraternal11_planet_class_option PLANET_CLASS = arctic }
+	inline_script = { script = events/fraternal11_pd_planet_category_option PD_PLANET_CATEGORY = arctic EVENT_ID = 17 }
+	inline_script = { script = events/fraternal11_planet_class_option PLANET_CLASS = alpine }
+	inline_script = { script = events/fraternal11_pd_planet_category_option PD_PLANET_CATEGORY = alpine EVENT_ID = 18 }
+	inline_script = { script = events/fraternal11_planet_class_option PLANET_CLASS = tundra }
+	inline_script = { script = events/fraternal11_pd_planet_category_option PD_PLANET_CATEGORY = tundra EVENT_ID = 19 }
+	option = {
+		name = fraternal.10.c
+		trigger = { has_planetary_diversity = yes }
+		hidden_effect = {
+			country_event = {
+				id = fraternal.20
+			}
+		}
+	}
+	option = {
+		name = fraternal.10.d
+		trigger = { has_planetary_diversity = yes }
+		hidden_effect = {
+			country_event = {
+				id = fraternal.21
+			}
+		}
+	}
+	option = {
+		name = fraternal.10.e
+		trigger = { has_planetary_diversity = yes }
+		hidden_effect = {
+			country_event = {
+				id = fraternal.22
+			}
+		}
+	}
+}
+
+# triggered explicitly by fraternal.10
+country_event = {
+	id = fraternal.11
+	is_triggered_only = yes
+	title = fraternal.11.title
+	desc = fraternal.10.desc
+	picture = GFX_evt_desert
+	trigger = {
+		is_ai = no
+		is_fraternal_twins = yes
+	}
+	option = {
+		name = fraternal.10.b
+		hidden_effect = {
+			country_event = {
+				id = fraternal.10
+			}
+		}
+	}
+	inline_script = { script = events/fraternal11_pd_planet_class_option PD_PLANET_CLASS = desert }
+	inline_script = { script = events/fraternal11_pd_planet_class_option PD_PLANET_CLASS = sandsea }
+	inline_script = { script = events/fraternal11_pd_planet_class_option PD_PLANET_CLASS = oasis }
+	inline_script = { script = events/fraternal11_pd_planet_class_option PD_PLANET_CLASS = outback }
+	inline_script = { script = events/fraternal11_pd_planet_class_option PD_PLANET_CLASS = coastal }
+}
+
+# triggered explicitly by fraternal.10
+country_event = {
+	id = fraternal.12
+	is_triggered_only = yes
+	title = fraternal.12.title
+	desc = fraternal.10.desc
+	picture = GFX_evt_arid
+	trigger = {
+		is_ai = no
+		is_fraternal_twins = yes
+	}
+	option = {
+		name = fraternal.10.b
+		hidden_effect = {
+			country_event = {
+				id = fraternal.10
+			}
+		}
+	}
+	inline_script = { script = events/fraternal11_pd_planet_class_option PD_PLANET_CLASS = arid }
+	inline_script = { script = events/fraternal11_pd_planet_class_option PD_PLANET_CLASS = mesa }
+	inline_script = { script = events/fraternal11_pd_planet_class_option PD_PLANET_CLASS = hadesert }
+	inline_script = { script = events/fraternal11_pd_planet_class_option PD_PLANET_CLASS = med }
+	inline_script = { script = events/fraternal11_pd_planet_class_option PD_PLANET_CLASS = badlands }
+}
+
+# triggered explicitly by fraternal.10
+country_event = {
+	id = fraternal.13
+	is_triggered_only = yes
+	title = fraternal.13.title
+	desc = fraternal.10.desc
+	picture = GFX_evt_savannah
+	trigger = {
+		is_ai = no
+		is_fraternal_twins = yes
+	}
+	option = {
+		name = fraternal.10.b
+		hidden_effect = {
+			country_event = {
+				id = fraternal.10
+			}
+		}
+	}
+	inline_script = { script = events/fraternal11_pd_planet_class_option PD_PLANET_CLASS = savannah }
+	inline_script = { script = events/fraternal11_pd_planet_class_option PD_PLANET_CLASS = steppe }
+	inline_script = { script = events/fraternal11_pd_planet_class_option PD_PLANET_CLASS = prairie }
+	inline_script = { script = events/fraternal11_pd_planet_class_option PD_PLANET_CLASS = veld }
+	inline_script = { script = events/fraternal11_pd_planet_class_option PD_PLANET_CLASS = semiarid }
+}
+
+# triggered explicitly by fraternal.10
+country_event = {
+	id = fraternal.14
+	is_triggered_only = yes
+	title = fraternal.14.title
+	desc = fraternal.10.desc
+	picture = GFX_evt_ocean
+	trigger = {
+		is_ai = no
+		is_fraternal_twins = yes
+	}
+	option = {
+		name = fraternal.10.b
+		hidden_effect = {
+			country_event = {
+				id = fraternal.10
+			}
+		}
+	}
+	inline_script = { script = events/fraternal11_pd_planet_class_option PD_PLANET_CLASS = ocean }
+	inline_script = { script = events/fraternal11_pd_planet_class_option PD_PLANET_CLASS = cascadian }
+	inline_script = { script = events/fraternal11_pd_planet_class_option PD_PLANET_CLASS = wetswamp }
+	inline_script = { script = events/fraternal11_pd_planet_class_option PD_PLANET_CLASS = subarctic }
+	inline_script = { script = events/fraternal11_pd_planet_class_option PD_PLANET_CLASS = fog }
+}
+
+# triggered explicitly by fraternal.10
+country_event = {
+	id = fraternal.15
+	is_triggered_only = yes
+	title = fraternal.15.title
+	desc = fraternal.10.desc
+	picture = GFX_evt_continental
+	trigger = {
+		is_ai = no
+		is_fraternal_twins = yes
+	}
+	option = {
+		name = fraternal.10.b
+		hidden_effect = {
+			country_event = {
+				id = fraternal.10
+			}
+		}
+	}
+	inline_script = { script = events/fraternal11_pd_planet_class_option PD_PLANET_CLASS = continental }
+	inline_script = { script = events/fraternal11_pd_planet_class_option PD_PLANET_CLASS = forest }
+	inline_script = { script = events/fraternal11_pd_planet_class_option PD_PLANET_CLASS = tepid }
+	inline_script = { script = events/fraternal11_pd_planet_class_option PD_PLANET_CLASS = retinal }
+	inline_script = { script = events/fraternal11_pd_planet_class_option PD_PLANET_CLASS = lake }
+}
+
+# triggered explicitly by fraternal.10
+country_event = {
+	id = fraternal.16
+	is_triggered_only = yes
+	title = fraternal.16.title
+	desc = fraternal.10.desc
+	picture = GFX_evt_tropical
+	trigger = {
+		is_ai = no
+		is_fraternal_twins = yes
+	}
+	option = {
+		name = fraternal.10.b
+		hidden_effect = {
+			country_event = {
+				id = fraternal.10
+			}
+		}
+	}
+	inline_script = { script = events/fraternal11_pd_planet_class_option PD_PLANET_CLASS = tropical }
+	inline_script = { script = events/fraternal11_pd_planet_class_option PD_PLANET_CLASS = hajungle }
+	inline_script = { script = events/fraternal11_pd_planet_class_option PD_PLANET_CLASS = desertislands }
+	inline_script = { script = events/fraternal11_pd_planet_class_option PD_PLANET_CLASS = mangrove }
+	inline_script = { script = events/fraternal11_pd_planet_class_option PD_PLANET_CLASS = cenote }
+}
+
+# triggered explicitly by fraternal.10
+country_event = {
+	id = fraternal.17
+	is_triggered_only = yes
+	title = fraternal.17.title
+	desc = fraternal.10.desc
+	picture = GFX_evt_arctic
+	trigger = {
+		is_ai = no
+		is_fraternal_twins = yes
+	}
+	option = {
+		name = fraternal.10.b
+		hidden_effect = {
+			country_event = {
+				id = fraternal.10
+			}
+		}
+	}
+	inline_script = { script = events/fraternal11_pd_planet_class_option PD_PLANET_CLASS = arctic }
+	inline_script = { script = events/fraternal11_pd_planet_class_option PD_PLANET_CLASS = frozen_desert }
+	inline_script = { script = events/fraternal11_pd_planet_class_option PD_PLANET_CLASS = glacial }
+	inline_script = { script = events/fraternal11_pd_planet_class_option PD_PLANET_CLASS = antarctic }
+	inline_script = { script = events/fraternal11_pd_planet_class_option PD_PLANET_CLASS = aeolian }
+}
+
+# triggered explicitly by fraternal.10
+country_event = {
+	id = fraternal.18
+	is_triggered_only = yes
+	title = fraternal.18.title
+	desc = fraternal.10.desc
+	picture = GFX_evt_alpine_city
+	trigger = {
+		is_ai = no
+		is_fraternal_twins = yes
+	}
+	option = {
+		name = fraternal.10.b
+		hidden_effect = {
+			country_event = {
+				id = fraternal.10
+			}
+		}
+	}
+	inline_script = { script = events/fraternal11_pd_planet_class_option PD_PLANET_CLASS = alpine }
+	inline_script = { script = events/fraternal11_pd_planet_class_option PD_PLANET_CLASS = boreal }
+	inline_script = { script = events/fraternal11_pd_planet_class_option PD_PLANET_CLASS = snow }
+	inline_script = { script = events/fraternal11_pd_planet_class_option PD_PLANET_CLASS = highland }
+	inline_script = { script = events/fraternal11_pd_planet_class_option PD_PLANET_CLASS = duneforest }
+}
+
+# triggered explicitly by fraternal.10
+country_event = {
+	id = fraternal.19
+	is_triggered_only = yes
+	title = fraternal.19.title
+	desc = fraternal.10.desc
+	picture = GFX_evt_tundra
+	trigger = {
+		is_ai = no
+		is_fraternal_twins = yes
+	}
+	option = {
+		name = fraternal.10.b
+		hidden_effect = {
+			country_event = {
+				id = fraternal.10
+			}
+		}
+	}
+	inline_script = { script = events/fraternal11_pd_planet_class_option PD_PLANET_CLASS = tundra }
+	inline_script = { script = events/fraternal11_pd_planet_class_option PD_PLANET_CLASS = swamp }
+	inline_script = { script = events/fraternal11_pd_planet_class_option PD_PLANET_CLASS = mushroom }
+	inline_script = { script = events/fraternal11_pd_planet_class_option PD_PLANET_CLASS = mud }
+	inline_script = { script = events/fraternal11_pd_planet_class_option PD_PLANET_CLASS = basalt }
+}
+
+# triggered explicitly by fraternal.10
+country_event = {
+	id = fraternal.20
+	is_triggered_only = yes
+	title = fraternal.20.title
+	desc = fraternal.10.desc
+	picture = GFX_evt_warm_barren
+	trigger = {
+		is_ai = no
+		is_fraternal_twins = yes
+	}
+	option = {
+		name = fraternal.10.b
+		hidden_effect = {
+			country_event = {
+				id = fraternal.10
+			}
+		}
+	}
+	inline_script = { script = events/fraternal11_pd_planet_class_option PD_PLANET_CLASS = salt }
+	inline_script = { script = events/fraternal11_pd_planet_class_option PD_PLANET_CLASS = coral }
+	inline_script = { script = events/fraternal11_pd_planet_class_option PD_PLANET_CLASS = supercon }
+	inline_script = { script = events/fraternal11_pd_planet_class_option PD_PLANET_CLASS = aquifer }
+	inline_script = { script = events/fraternal11_pd_planet_class_option PD_PLANET_CLASS = primal }
+	inline_script = { script = events/fraternal11_pd_planet_class_option PD_PLANET_CLASS = pd_sinkhole }
+	inline_script = { script = events/fraternal11_pd_planet_class_option PD_PLANET_CLASS = pd_dry_superhab }
+	inline_script = { script = events/fraternal11_pd_planet_class_option PD_PLANET_CLASS = tidallylocked }
+	inline_script = { script = events/fraternal11_pd_planet_class_option PD_PLANET_CLASS = pd_dry_cave }
+}
+
+# triggered explicitly by fraternal.10
+country_event = {
+	id = fraternal.21
+	is_triggered_only = yes
+	title = fraternal.21.title
+	desc = fraternal.10.desc
+	picture = GFX_evt_alien_nature
+	trigger = {
+		is_ai = no
+		is_fraternal_twins = yes
+	}
+	option = {
+		name = fraternal.10.b
+		hidden_effect = {
+			country_event = {
+				id = fraternal.10
+			}
+		}
+	}
+	inline_script = { script = events/fraternal11_pd_planet_class_option PD_PLANET_CLASS = megaflora }
+	inline_script = { script = events/fraternal11_pd_planet_class_option PD_PLANET_CLASS = pd_archipelago }
+	inline_script = { script = events/fraternal11_pd_planet_class_option PD_PLANET_CLASS = geothermal }
+	inline_script = { script = events/fraternal11_pd_planet_class_option PD_PLANET_CLASS = pd_petrified }
+	inline_script = { script = events/fraternal11_pd_planet_class_option PD_PLANET_CLASS = reef }
+	inline_script = { script = events/fraternal11_pd_planet_class_option PD_PLANET_CLASS = biolumen }
+	inline_script = { script = events/fraternal11_pd_planet_class_option PD_PLANET_CLASS = superhabitable }
+	inline_script = { script = events/fraternal11_pd_planet_class_option PD_PLANET_CLASS = wettidallylocked }
+	inline_script = { script = events/fraternal11_pd_planet_class_option PD_PLANET_CLASS = karst }
+}
+
+# triggered explicitly by fraternal.10
+country_event = {
+	id = fraternal.22
+	is_triggered_only = yes
+	title = fraternal.22.title
+	desc = fraternal.10.desc
+	picture = GFX_evt_cold_barren
+	trigger = {
+		is_ai = no
+		is_fraternal_twins = yes
+	}
+	option = {
+		name = fraternal.10.b
+		hidden_effect = {
+			country_event = {
+				id = fraternal.10
+			}
+		}
+	}
+	inline_script = { script = events/fraternal11_pd_planet_class_option PD_PLANET_CLASS = storm }
+	inline_script = { script = events/fraternal11_pd_planet_class_option PD_PLANET_CLASS = glacio }
+	inline_script = { script = events/fraternal11_pd_planet_class_option PD_PLANET_CLASS = cryoflora }
+	inline_script = { script = events/fraternal11_pd_planet_class_option PD_PLANET_CLASS = pd_iceberg }
+	inline_script = { script = events/fraternal11_pd_planet_class_option PD_PLANET_CLASS = lanthanide }
+	inline_script = { script = events/fraternal11_pd_planet_class_option PD_PLANET_CLASS = lichen }
+	inline_script = { script = events/fraternal11_pd_planet_class_option PD_PLANET_CLASS = pd_cold_superhab }
+	inline_script = { script = events/fraternal11_pd_planet_class_option PD_PLANET_CLASS = eyeball }
+	inline_script = { script = events/fraternal11_pd_planet_class_option PD_PLANET_CLASS = pd_cold_cave }
+}
+
+# triggered by on_game_start_country
+# note: fires at game start instead of during initialization so that the altered secondary
+# species can't be templated back to having ths same habitability as the main species
+country_event = {
+	id = fraternal.30
+	is_triggered_only = yes
+	hide_window = yes
+	trigger = { is_fraternal_twins = yes }
+	immediate = {
+		capital_scope.solar_system = {
+			random_system_planet = {
+				limit = { has_planet_flag = fraternal_secondhome }
+				ensure_planet_pops_match_ideal_planet_class = yes
+			}
+		}
+	}
+}
+
+# triggered by on_game_start_country
+country_event = {
+	id = fraternal.31
+	is_triggered_only = yes
+	hide_window = yes
+	trigger = { is_fraternal_twins = yes }
+	immediate = {
+		capital_scope.solar_system = {
+			closest_system = {
+				limit = { has_star_flag = neighbor_t1_first_colony }
+				max_steps = 3
+				random_system_planet = {
+					limit = {
+						is_colonizable = yes
+						is_colony = no
+						has_planet_flag = prescripted_ideal
+					}
+					change_pc = pc_toxic
+					add_modifier = { modifier = toxic_terraforming_candidate }
+				}
+			}
+			closest_system = {
+				limit = { has_star_flag = neighbor_t2_second_colony }
+				max_steps = 6
+				random_system_planet = {
+					limit = {
+						is_colonizable = yes
+						is_colony = no
+						has_planet_flag = prescripted_ideal
+					}
+					change_pc = pc_toxic
+					add_modifier = { modifier = toxic_terraforming_candidate }
+				}
+			}
+		}
+	}
+}

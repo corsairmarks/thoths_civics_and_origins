@@ -1,0 +1,7 @@
+spriteTypes = {
+	spriteType = {
+		name = "GFX_origin_fraternal_twins"
+		texturefile = "gfx/event_pictures/origins/origin_fraternal_twins.dds"
+		alwaystransparent = yes
+	}
+}
