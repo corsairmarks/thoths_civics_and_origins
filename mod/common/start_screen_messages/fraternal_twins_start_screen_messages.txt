@@ -1,7 +1,19 @@
 part = {
 	location = 0
 	localization = "START_SCREEN_FRATERNAL_TWINS"
-	trigger = { has_origin = origin_fraternal_twins }
+	trigger = {
+		has_origin = origin_fraternal_twins
+		is_megacorp = no
+	}
+}
+
+part = {
+	location = 0
+	localization = "START_SCREEN_FRATERNAL_TWINS_MEGACORP"
+	trigger = {
+		has_origin = origin_fraternal_twins
+		is_megacorp = yes
+	}
 }
 
 part = {

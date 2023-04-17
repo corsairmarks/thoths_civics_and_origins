@@ -390,18 +390,3 @@ oft_add_authority_appropriate_housing_district = {
 		add_district = district_city
 	}
 }
-
-# this = planet
-oft_add_species_appropriate_food_district = {
-	optimize_memory
-	if = {
-		limit = {
-			exists = owner
-			owner = { is_lithoid_empire = no }
-		}
-		ojl_add_planet_appropriate_farming_district = yes
-	}
-	else = {
-		ojl_add_planet_appropriate_mining_district = yes
-	}
-}

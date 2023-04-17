@@ -14,7 +14,7 @@ origin_fraternal_twins = {
 		custom_starting_init_fraternal10
 		custom_starting_init_fraternal11
 		custom_starting_init_fraternal12
-		# custom_starting_init_lustist # TODO
+		# custom_starting_init_lustist
 	 }
 	playable = { has_utopia = yes }
 	ai_playable = { has_utopia = yes }
@@ -50,7 +50,6 @@ origin_fraternal_twins_hive = {
 		custom_starting_init_fraternal10
 		custom_starting_init_fraternal11
 		custom_starting_init_fraternal12
-		# custom_starting_init_lustist # TODO
 	 }
 	playable = {
 		has_utopia = yes

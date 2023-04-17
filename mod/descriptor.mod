@@ -1,4 +1,4 @@
-name="Thoth's Civics and Origins"
+name="Thoth's Civics and More"
 tags={
 	"Economy"
 	"Galaxy Generation"
@@ -7,3 +7,4 @@ tags={
 version="0.3.0"
 supported_version="3.7.*"
 picture="thumbnail.png"
+remote_file_id="2963518629"

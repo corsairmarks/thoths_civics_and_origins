@@ -371,8 +371,6 @@ custom_starting_init_fraternal03 = {
 			remove_planet = yes
 		}
 
-		change_orbit = @base_moon_distance
-
 		moon = {
 			class = rl_habitable_normal
 			orbit_angle = 120
@@ -1103,7 +1101,7 @@ custom_starting_init_fraternal10 = {
 
 	flags = { empire_home_system sol_system sol fraternal_start martian_sibling }
 
-	usage = custom_empire
+	usage = origin
 
 	init_effect = {
 		every_neighbor_system = {
@@ -1389,7 +1387,7 @@ custom_starting_init_fraternal11 = {
 
 	flags = { empire_home_system sol_system sol fraternal_start venusian_sibling }
 
-	usage = custom_empire
+	usage = origin
 
 	init_effect = {
 		every_neighbor_system = {
@@ -1676,7 +1674,7 @@ custom_starting_init_fraternal12 = {
 
 	flags = { empire_home_system sol_system sol fraternal_start venusian_sibling }
 
-	usage = custom_empire
+	usage = origin
 
 	init_effect = {
 		every_neighbor_system = {
@@ -1720,7 +1718,7 @@ custom_starting_init_fraternal12 = {
 
 	planet = {
 		name = "NAME_Earth_Venusian"
-		class = random_non_colonizable
+		class = pc_barren
 		orbit_distance = 25
 		orbit_angle = 120
 		size = 18
