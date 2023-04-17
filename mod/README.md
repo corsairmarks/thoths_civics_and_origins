@@ -1,38 +1,19 @@
-# Overview
+A dumb little mod with stuff I've made. So far it contains 1½ new origins and one trait, with more to come (hopefully.)
 
-Summary
+[list]
+[*]Fraternal Twins - Start with a secondary species and a second homeworld in your system. Comes with a gestalt version!
+[*]Kleptoplastic - a lite version of Phototrophic for species who aren't plants or fungi. Mostly for roleplay purposes.
+[/list]
 
-# Changes
-
-Notes
-
-## Compatibility
-
-Notes
-
-### When to Install
-
-Notes
-
-### Recommended Companion Mods
-
-* List
-
-## Known Issues
-
-Overriding XXX causes the game to log errors noting the overrides.  Expect to see XXX lines in the error.log file like these:
-
-```
-Error Logs
-```
+Special credit to corsairmarks for writing most of Fraternal Twins' code in his spare time.
 
 ## Changelog
 
-* 1.0.0 Initial version
+* 0.3.0 Initial version
 
 ## Source Code
 
-Hosted on [GitHub](https://github.com/corsairmarks/)
+Hosted on [GitHub](https://github.com/corsairmarks/thoths_civics_and_origins)
 
 ### Development Notes
 
