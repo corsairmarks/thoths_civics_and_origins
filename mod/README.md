@@ -1,9 +1,7 @@
 A dumb little mod with stuff I've made. So far it contains 1½ new origins and one trait, with more to come (hopefully.)
 
-[list]
-[*]Fraternal Twins - Start with a secondary species and a second homeworld in your system. Comes with a gestalt version!
-[*]Kleptoplastic - a lite version of Phototrophic for species who aren't plants or fungi. Mostly for roleplay purposes.
-[/list]
+* Fraternal Twins - Start with a secondary species and a second homeworld in your system. Comes with a gestalt version!
+* Kleptoplastic - a lite version of Phototrophic for species who aren't plants or fungi. Mostly for roleplay purposes.
 
 Special credit to corsairmarks for writing most of Fraternal Twins' code in his spare time.
 
