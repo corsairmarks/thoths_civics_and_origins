@@ -1,0 +1,12 @@
+upkeep = {
+	trigger = {
+		has_trait = trait_kleptoplastic
+	}
+	food = 0.67
+}
+upkeep = {
+	trigger = {
+		has_trait = trait_kleptoplastic
+	}
+	energy = 0.33
+}

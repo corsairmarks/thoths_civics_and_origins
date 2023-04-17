@@ -1,0 +1,25 @@
+trait_kleptoplastic = {
+	cost = 1
+	species_possible_remove = {
+		can_remove_beneficial_traits = yes
+	}
+	potential_crossbreeding_chance = 1
+	opposites = {
+		"trait_plantoid_phototrophic"
+		"trait_plantoid_radiotrophic"
+		"trait_lithoid_radiotrophic"
+		"trait_cave_dweller"
+	}
+	allowed_archetypes = {
+		BIOLOGICAL
+	}
+	species_class = {
+		MOL
+	}
+	sorting_priority = 30
+	custom_tooltip = TRAIT_KLEPTOPLASTIC_EFFECT
+	icon = "gfx/interface/icons/traits/trait_kleptoplastic.dds"
+	slave_cost = {
+		energy = 666
+	}
+}
