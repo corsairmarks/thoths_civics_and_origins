@@ -94,9 +94,9 @@ generate_fraternal_twins_start_pops = {
 					}
 				}
 				oft_ensure_hive_citizenship = yes
-				check_planet_employment = yes
 			}
 		}
+		check_planet_employment = yes
 	}
 }
 
