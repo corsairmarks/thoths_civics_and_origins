@@ -38,7 +38,24 @@ planet_event = {
 		event_target:secondary_species = { save_event_target_as = fraternal_species }
 		event_target:fraternal_secondhome = {
 			set_owner = space_owner
-			generate_start_deposits_and_blockers = yes
+			if = {
+				limit = {
+					OR = {
+						has_planetary_diversity = no
+						AND = {
+							OR = {
+								is_planet_class = pc_ocean # is_pd_regular incorrectly includes the built-in ocean class
+								is_pd_regular = no
+							}
+							is_pd_rare = no
+						}
+					}
+				}
+				generate_start_deposits_and_blockers = yes
+			}
+			else = {
+				generate_pd_start_deposits_and_blockers = yes
+			}
 			generate_fraternal_twins_start_buildings_and_districts = yes
 			generate_fraternal_twins_start_pops = yes
 			generate_home_planet_final_pass = yes

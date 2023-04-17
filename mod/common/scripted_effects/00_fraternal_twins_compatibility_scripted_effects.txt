@@ -1,0 +1,7 @@
+# Irony this is a placeholder file please ignore it
+
+### Planetary Diversity ###
+# https://steamcommunity.com/sharedfiles/filedetails/?id=819148835
+
+# this = planet
+generate_pd_start_deposits_and_blockers = { }
