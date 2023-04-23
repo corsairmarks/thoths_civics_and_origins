@@ -10,6 +10,7 @@ Special credit to corsairmarks for writing most of Fraternal Twins' code in his 
 * 0.3.0 Initial version
 * 0.3.1 Kleptoplastic trait
 * 0.3.2 Uncomment initializer in origin file
+* 0.3.3 Add missing localisation for the Kleptoplastic trait
 
 ## Source Code
 
