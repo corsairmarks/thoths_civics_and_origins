@@ -8,6 +8,8 @@ Special credit to corsairmarks for writing most of Fraternal Twins' code in his 
 ## Changelog
 
 * 0.3.0 Initial version
+* 0.3.1 Kleptoplastic trait
+* 0.3.2 Uncomment initializer in origin file
 
 ## Source Code
 
