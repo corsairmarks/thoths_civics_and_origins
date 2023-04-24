@@ -386,7 +386,7 @@ custom_starting_init_fraternal03 = {
 			home_planet = yes
 			class = ideal_planet_class
 			orbit_distance = 0
-			orbit_angle = { min = 90 max = 270 }
+			orbit_angle = 180
 			size = { min = 12 max = 20 }
 			deposit_blockers = none
 			modifiers = none
