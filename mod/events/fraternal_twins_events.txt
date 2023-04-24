@@ -37,7 +37,7 @@ planet_event = {
 		generate_home_planet_final_pass = yes
 		event_target:secondary_species = { save_event_target_as = fraternal_species }
 		event_target:fraternal_secondhome = {
-			set_owner = space_owner
+			set_owner = root.owner # space_owner doesn't exist if this event is called on a freshly-spawned system
 			if = {
 				limit = {
 					OR = {
