@@ -4,7 +4,6 @@
 on_game_start_country = {
 	events = {
 		fraternal.30
-		fraternal.31
 	}
 }
 
@@ -22,5 +21,6 @@ on_press_begin = {
 empire_init_capital_planet = {
 	events = {
 		fraternal.1
+		fraternal.31
 	}
 }

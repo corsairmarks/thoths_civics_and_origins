@@ -494,14 +494,15 @@ country_event = {
 	}
 }
 
-# triggered by on_game_start_country
-country_event = {
+# triggered by empire_init_capital_planet
+planet_event = {
 	id = fraternal.31
 	is_triggered_only = yes
 	hide_window = yes
-	trigger = { is_fraternal_twins = yes }
+	pre_triggers = { has_owner = yes }
+	trigger = { owner = { is_fraternal_twins = yes } }
 	immediate = {
-		capital_scope.solar_system = {
+		solar_system = {
 			closest_system = {
 				limit = { has_star_flag = neighbor_t1_first_colony }
 				max_steps = 3
