@@ -120,7 +120,7 @@ generate_fraternal_twins_start_buildings_and_districts = {
 		oft_add_authority_appropriate_housing_district = yes
 	}
 	else = {
-		add_district = district_farming
+		add_district_and_planet_size_if_needed_effect = { district = district_farming }
 	}
 
 	if = {
@@ -135,28 +135,28 @@ generate_fraternal_twins_start_buildings_and_districts = {
 				}
 			}
 		}
-		add_district = district_farming
+		add_district_and_planet_size_if_needed_effect = { district = district_farming }
 	}
 	else = {
-		add_district = district_mining
+		add_district_and_planet_size_if_needed_effect = { district = district_mining }
 	}
 
-	add_district = district_mining
-	add_district = district_industrial
+	add_district_and_planet_size_if_needed_effect = { district = district_mining }
+	add_district_and_planet_size_if_needed_effect = { district = district_industrial }
 	if = {
 		limit = { owner = { is_hive_empire = no } }
-		add_district = district_industrial
+		add_district_and_planet_size_if_needed_effect = { district = district_industrial }
 	}
 	else_if = {
 		limit = { has_planet_flag = fraternal_secondhome }
-		add_district = district_generator
+		add_district_and_planet_size_if_needed_effect = { district = district_generator }
 	}
 	else_if = {
 		limit = { owner = { is_lithoid = no } }
-		add_district = district_farming
+		add_district_and_planet_size_if_needed_effect = { district = district_farming }
 	}
 	else = {
-		add_district = district_mining
+		add_district_and_planet_size_if_needed_effect = { district = district_mining }
 	}
 
 	if = {
@@ -192,7 +192,7 @@ generate_fraternal_twins_start_buildings_and_districts = {
 			limit = { has_planet_flag = fraternal_secondhome }
 			if = {
 				limit = { owner = { is_gestalt = no } }
-				add_district = district_mining
+				force_add_district_and_planet_size_if_needed_effect = { district = district_mining }
 			}
 			if = {
 				limit = { owner = { is_hive_empire = yes } }
@@ -279,7 +279,7 @@ generate_fraternal_twins_start_buildings_and_districts = {
 			}
 		}
 		remove_district = district_mining
-		add_district = district_farming
+		add_district_and_planet_size_if_needed_effect = { district = district_farming }
 	}
 
 	# Replace farming districts with uncapped ones for anglers civic on ocean worlds
@@ -299,7 +299,7 @@ generate_fraternal_twins_start_buildings_and_districts = {
 				}
 			}
 			remove_district = district_farming
-			add_district = district_farming_uncapped
+			add_district_and_planet_size_if_needed_effect = { district = district_farming_uncapped }
 		}
 	}
 
@@ -336,7 +336,7 @@ ensure_planet_pops_match_ideal_planet_class = {
 	check_planet_employment = yes
 }
 
-# this = species/pop/leader
+# this = pop/leader
 oft_ensure_hive_citizenship = {
 	optimize_memory
 	if = {
@@ -344,33 +344,33 @@ oft_ensure_hive_citizenship = {
 			NOT = {
 				has_citizenship_type = {
 					type = citizenship_full
-					country = prev
+					country = owner
 				}
 			}
 		}
 		set_citizenship_type = {
 			type = citizenship_full
-			country = prev
+			country = owner
 		}
 		set_living_standard = {
 			type = living_standard_hive_mind
-			country = prev
+			country = owner
 		}
 		set_military_service_type = {
 			type = military_service_full
-			country = prev
+			country = owner
 		}
 		set_population_controls = {
 			type = population_control_no
-			country = prev
+			country = owner
 		}
 		set_migration_controls = {
 			type = migration_control_no
-			country = prev
+			country = owner
 		}
 		set_colonization_controls = {
 			type = colonization_control_no
-			country = prev
+			country = owner
 		}
 	}
 }
@@ -380,13 +380,13 @@ oft_add_authority_appropriate_housing_district = {
 	optimize_memory
 	if = {
 		limit = { owner = { is_hive_empire = yes } }
-		add_district = district_hive
+		add_district_and_planet_size_if_needed_effect = { district = district_hive }
 	}
 	else_if = {
 		limit = { owner = { is_machine_empire = yes } }
-		add_district = district_nexus
+		add_district_and_planet_size_if_needed_effect = { district = district_nexus }
 	}
 	else = {
-		add_district = district_city
+		add_district_and_planet_size_if_needed_effect = { district = district_city }
 	}
 }
