@@ -512,8 +512,8 @@ planet_event = {
 						is_colony = no
 						has_planet_flag = prescripted_ideal
 					}
-					change_pc = pc_toxic
-					add_modifier = { modifier = toxic_terraforming_candidate }
+					change_pc = pc_barren
+					add_modifier = { modifier = terraforming_candidate }
 				}
 			}
 			closest_system = {
@@ -525,8 +525,8 @@ planet_event = {
 						is_colony = no
 						has_planet_flag = prescripted_ideal
 					}
-					change_pc = pc_toxic
-					add_modifier = { modifier = toxic_terraforming_candidate }
+					change_pc = pc_barren
+					add_modifier = { modifier = terraforming_candidate }
 				}
 			}
 		}

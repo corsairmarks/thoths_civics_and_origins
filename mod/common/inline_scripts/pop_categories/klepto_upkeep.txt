@@ -2,11 +2,11 @@ upkeep = {
 	trigger = {
 		has_trait = trait_kleptoplastic
 	}
-	food = 0.67
+	food = 0.75
 }
 upkeep = {
 	trigger = {
 		has_trait = trait_kleptoplastic
 	}
-	energy = 0.33
+	energy = 0.25
 }
